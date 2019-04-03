@@ -28,6 +28,16 @@ class Instructor extends Person {
     grade(student, subject) {
         console.log(`${student.name} receives a perfect score on ${subject}`);
     }
+
+    changeStudentGrade(student) {
+        let option = Math.random();
+        if(option < .49) {
+            student.grade -= Math.floor(Math.random() * 11);
+        } else {
+            student.grade += Math.floor(Math.random() * 11);
+        }
+        console.log(`${student.name}'s new grade is ${student.grade}`);
+    }
 }
 
 class Student extends Person {
@@ -36,6 +46,7 @@ class Student extends Person {
         this.previousBackground = attrs.previousBackground;
         this.className = attrs.className;
         this.favSubjects = attrs.favSubjects;
+        this.grade = attrs.grade;
     }
 
     listSubjects() {
@@ -51,6 +62,14 @@ class Student extends Person {
 
     sprintChallenge(subject) {
         console.log(`${this.name} has begun sprint challenge on ${subject}`);
+    }
+
+    graduate() {
+        if(this.grade > 70) {
+            console.log(`${this.name} has graduated from Lambda School! Congratulations!`);
+        } else {
+            console.log('Have your instructor grade some more work. You will get there soon!');
+        }
     }
 }
 
@@ -100,7 +119,8 @@ const student1 = new Student({
     gender: "Male",
     previousBackground: 'IT',
     className: 'WEBPT5',
-    favSubjects: ['HTML','Javascript','Python']
+    favSubjects: ['HTML','Javascript','Python'],
+    grade: 99
 });
 
 const student2 = new Student({
@@ -110,7 +130,8 @@ const student2 = new Student({
     gender: "Male",
     previousBackground: 'Fast food',
     className: 'CS14',
-    favSubjects: ['CSS','React','Node JS']
+    favSubjects: ['CSS','React','Node JS'],
+    grade: 59
 });
 
 const student3 = new Student({
@@ -120,7 +141,8 @@ const student3 = new Student({
     gender: "Female",
     previousBackground: 'Construction',
     className: 'WEBPT3',
-    favSubjects: ['C','React','Redux', 'Perl','Ruby on Rails']
+    favSubjects: ['C','React','Redux', 'Perl','Ruby on Rails'],
+    grade: 100
 });
 
 //create Instructor Objects
@@ -209,3 +231,13 @@ instructor3.grade(student1, 'Javascript-IV'); // `Sean Hockin receives a perfect
 pm1.standUp('WEBPT5_Dil'); // 'Dil Somone announces to WEBPT5_Dil, @channel standy times!'
 pm2.debugsCode(student2, 'HTML'); // `Karen Smith debugs John Jacob's code on HTML`
 console.log(pm3.gradClassName); // 'CS6'
+
+
+
+//Strecth goals
+instructor1.changeStudentGrade(student1); // "Sean Hockin's new grade is [grade here]"
+instructor1.changeStudentGrade(student1); // "Sean Hockin's new grade is [grade here]"
+
+student1.graduate();
+student2.graduate();
+student3.graduate();
